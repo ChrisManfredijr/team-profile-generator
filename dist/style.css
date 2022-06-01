@@ -1,0 +1,31 @@
+.card {
+    width:350px;
+    margin:10px;
+    
+
+}
+
+#card-slots {
+    display:flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+.header-card {
+    padding:10px;
+}
+.content {
+   
+    border:1px solid grey;
+    border-top:none;
+}
+
+.sub-section {
+    border-top:1px solid grey;
+    padding:10px;
+}
+
+.anchor {
+    font-weight: bold;
+    font-style: italic;
+}
