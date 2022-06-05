@@ -1,8 +1,10 @@
-generatePage = (employeeArray) => {
+const fs = require('fs');
 
+generatePage = (employeeArray) => {
+    var cardArray = [];
     for(let i=0; i < employeeArray.length; i++){
         var position = employeeArray[i].getRole();
-        var cardArray = [];
+        
         
         if(position === 'Manager'){
             cardArray.push(managerHTML(employeeArray[i]));
@@ -31,7 +33,7 @@ const managerHTML = (manager) => {
                 <div class="content has-background-white">
                     <p class="sub-section">ID: ${manager.id}</p>
                     <p class="sub-section">Email: <a href="mailto:${manager.email}" class="anchor">${manager.email}</a></p>
-                    <p class="sub-section">Office Number: ${manager.id}</p>
+                    <p class="sub-section">Office Number: ${manager.officeNumber}</p>
                 </div>
             </div>
         </article>`
@@ -80,7 +82,7 @@ const internHTML = (intern) => {
 }
 
 const generateHTML = (employeeSection) => {
-    return `<!DOCTYPE html>
+    var employeeCards = `<!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -107,6 +109,17 @@ const generateHTML = (employeeSection) => {
     </body>
     
     </html>`
+    writeFile(employeeCards);
 }
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("Team profile page generated")
+        }
+    })
+};
 
 module.exports = generatePage;

@@ -30,7 +30,8 @@ const addManager = () => {
             name: 'id',
             message: "please enter manager ID:",
             validate: idInput => {
-                if (idInput) {
+                if (idInput - idInput === 0) {
+                    console.log(idInput);
                     return true;
                 } else {
                     console.log("please enter an id");
@@ -57,9 +58,10 @@ const addManager = () => {
             message: "please enter managers office number:",
             validate: officeInput => {
                 if (officeInput) {
+                    console.log(officeInput);
                     return true;
                 } else {
-                    console.log("please entire office number");
+                    console.log("please enter an office number");
                     return false;
                 }
             }
@@ -68,7 +70,8 @@ const addManager = () => {
     ])
     .then(managerData => {
         const { name, id, email, office } = managerData;
-        const manager = new Manager(name, id, email, office);
+        const position = 'Manager';
+        const manager = new Manager(name, id, email, office, position);
         employeeArray.push(manager);
         addEmployees();
     })
@@ -106,7 +109,7 @@ const addEmployees = () => {
             message: "please enter employee ID:",
             when: (input) => input.position != "Finish team (build site)",
             validate: idInput => {
-                if (idInput) {
+                if (idInput - idInput === 0) {
                     return true;
                 } else {
                     console.log("please enter an id");
@@ -131,7 +134,7 @@ const addEmployees = () => {
         {
             type: 'input',
             name: 'github',
-            message: 'Please enter your github username',
+            message: 'Please enter engineers github username',
             when: (input) => input.position === "Engineer",
             validate: githubInput => {
                 if (githubInput) {
@@ -160,7 +163,7 @@ const addEmployees = () => {
     ])
     .then(employeeData => {
         
-        let {position, name, id, email,github, school} = employeeData;
+        let {position, name, id, email, github, school} = employeeData;
 
         if(position === 'Engineer'){
             const engineer = new Engineer(name, id, email, github);
@@ -178,6 +181,5 @@ const addEmployees = () => {
        
     })
 };
-
 
 addManager();
